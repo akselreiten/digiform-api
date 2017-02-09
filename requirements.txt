@@ -1,0 +1,5 @@
+Django
+django-cors-middleware
+djangorestframework
+djangorestframework-jwt
+serpy
