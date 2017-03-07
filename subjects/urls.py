@@ -1,10 +1,11 @@
 from django.conf.urls import url
 
 from .views import SubjectListCreateView
+from .views import NtnuSubjectListCreateView
 
 urlpatterns = [
 
     url(r'^$',
-        SubjectListCreateView.as_view(),
+        NtnuSubjectListCreateView.as_view(),
         name='subject-list-create')
 ]

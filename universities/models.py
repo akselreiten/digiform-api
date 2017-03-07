@@ -21,6 +21,5 @@ class University(models.Model):
         _('description')
     )
 
-
     def __str__(self):
         return '{}'.format(self.title)
