@@ -14,6 +14,9 @@ class UserSerializer(serpy.Serializer):
     # Status
     is_active = serpy.BoolField()
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
