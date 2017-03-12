@@ -11,8 +11,6 @@ from .serializers import ApplicationSerializer, ApplicationCreateSerializer
 
 # Create your views here.
 class ApplicationListCreateView(APIView):
-    queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):

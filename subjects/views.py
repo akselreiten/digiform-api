@@ -14,7 +14,6 @@ class SubjectListCreateView(generics.ListCreateAPIView):
 
 
 class NtnuSubjectListCreateView(generics.ListCreateAPIView):
-    queryset = Subject.objects.filter()
-    #university__title='NTNU' fix later
+    queryset = Subject.objects.filter(university__title='NTNU')
     serializer_class = SubjectSerializer
     permission_classes = (IsAuthenticated, )

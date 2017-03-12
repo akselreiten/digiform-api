@@ -8,3 +8,4 @@ urlpatterns = [
         ApplicationListCreateView.as_view(),
         name='application-list-create')
 ]
+
