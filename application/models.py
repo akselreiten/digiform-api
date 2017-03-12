@@ -22,4 +22,4 @@ class Application(models.Model):
     )
 
     def __str__(self):
-        return '{}'.format(self.application)
+        return '{}'.format(self.user)
