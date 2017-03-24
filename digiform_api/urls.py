@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^subjects/', include('subjects.urls')),
     url(r'^universities/', include('universities.urls')),
     url(r'^users/', include('users.urls')),
-    url(r'^application/', include('application.urls'))
+    url(r'^application/', include('application.urls')),
+    url(r'^messages/', include('user_messages.urls'))
 ]

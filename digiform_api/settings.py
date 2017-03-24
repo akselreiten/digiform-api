@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'universities',
     'application',
+    'user_messages',
 ]
 
 MIDDLEWARE_CLASSES = [
