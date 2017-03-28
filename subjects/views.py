@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, permissions, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Subject
 from .serializers import SubjectSerializer, SubjectCreateSerializer
@@ -34,3 +35,10 @@ class SubjectListCreateView(generics.ListCreateAPIView):
         data = SubjectSerializer(subject).data
         return Response(data, status=status.HTTP_201_CREATED)
 
+class SubjectCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self,request,pk):
+        queryset = Subject.objects.filter(id=pk)
+        data = SubjectSerializer(queryset, many=True).data
+        return Response(data, status=status.HTTP_200_OK)
