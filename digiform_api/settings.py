@@ -150,7 +150,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000'
+    'localhost:3000',
+    'folk.ntnu.no/akselr/'
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
