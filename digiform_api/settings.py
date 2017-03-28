@@ -148,9 +148,9 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 
-#CORS_ORIGIN_WHITELIST = (
-#    'localhost:3000'
-#)
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000'
+)
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
