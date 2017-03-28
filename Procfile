@@ -1,1 +1,1 @@
-web: gunicorn calm-gorge-91904.wsgi --log-file -
+web: gunicorn digiform-api.wsgi --log-file -
