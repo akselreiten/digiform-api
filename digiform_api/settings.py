@@ -27,7 +27,7 @@ SECRET_KEY = '&srpa(yycr^hna4-mgvyccf9_vv_q27&fi*j^2ld&#yo(@(e(^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['secure-earth-88278.herokuapp.com']
 
 
 # Application definition
