@@ -1,1 +1,1 @@
-web: gunicorn digiform-api.wsgi --log-file -
+web: gunicorn digiform_api.wsgi --log-file -
