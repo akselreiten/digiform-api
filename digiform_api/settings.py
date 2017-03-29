@@ -27,7 +27,7 @@ SECRET_KEY = '&srpa(yycr^hna4-mgvyccf9_vv_q27&fi*j^2ld&#yo(@(e(^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['secure-earth-88278.herokuapp.com']
+ALLOWED_HOSTS = ['secure-earth-88278.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -153,7 +153,8 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     '127.0.0.1:8080',
     'localhost:8080',
-    'folk.ntnu.no'
+    'folk.ntnu.no',
+    'localhost:8000',
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
