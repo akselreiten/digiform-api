@@ -27,7 +27,7 @@ SECRET_KEY = '&srpa(yycr^hna4-mgvyccf9_vv_q27&fi*j^2ld&#yo(@(e(^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['secure-earth-88278.herokuapp.com']
 
 
 # Application definition
@@ -150,7 +150,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000'
+    'localhost:3000',
+    '127.0.0.1:8080',
+    'localhost:8080',
+    'folk.ntnu.no'
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -159,9 +162,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+STATICFILES_DIRS = ()
 
 
 # Simplified static file serving.
