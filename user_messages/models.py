@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
-    receiver = models.ForeignKey(User, related_name="receiver", on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name="receiver", on_delete=models.CASCADE, blank=True, null=True)
     text = models.TextField(
         _('text')
     )
