@@ -28,7 +28,6 @@ class AllApplicationsListCreateView(APIView):
         if request.GET.get("approval") != "":
             applications = applications.filter(application_status = "Accepted")
 
-
         data = AllApplicationsSerializer(applications,many=True).data
 
         return Response(data, status=status.HTTP_200_OK)

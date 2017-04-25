@@ -19,3 +19,6 @@ class Message(models.Model):
         message += ": " + '{}'.format(self.text)
         return message
 
+    def __unicode__(self):
+        return u'%s' %(self.text)
+
