@@ -30,12 +30,9 @@ class UserListCreate(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class UserHandling(APIView):
-    """
-    Handles users
-    """
 
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         logout(request)
-        return Response(data=None, status=status.HTTP_200_OK)
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
