@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import UniversityListCreateView, UniversityListSubjectView
+from .views import UniversityListCreateView, UniversityListSubjectView, UniversitySearchListCreateView
 
 urlpatterns = [
 
@@ -12,4 +12,8 @@ urlpatterns = [
         UniversityListSubjectView.as_view(),
         name='university-list-subject'
         ),
+
+    url(r'^getUniversities/$',
+        UniversitySearchListCreateView.as_view(),
+        name='university-list-create'),
 ]

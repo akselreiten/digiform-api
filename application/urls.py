@@ -8,8 +8,8 @@ urlpatterns = [
         ApplicationListCreateView.as_view(),
         name='application-list-create'),
 
-    url(r'^getAllApplications/$',
+    url(r'^getApplications/$',
         AllApplicationsListCreateView.as_view(),
-        name='get-all-applications'),
+        name='get-applications'),
 ]
 

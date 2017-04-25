@@ -25,7 +25,8 @@ class Subject(models.Model):
 
 
     description = models.TextField(
-        _('description')
+        _('description'),
+        blank = True
     )
 
     def __str__(self):
