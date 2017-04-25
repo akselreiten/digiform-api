@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'universities',
     'application',
     'user_messages',
+    'University_reviews',
 ]
 
 MIDDLEWARE_CLASSES = [
