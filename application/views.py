@@ -6,10 +6,26 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Application
-from .serializers import ApplicationSerializer, ApplicationCreateSerializer
+from .serializers import ApplicationSerializer, ApplicationCreateSerializer, AllApplicationsSerializer
+
+
 
 
 # Create your views here.
+
+
+class AllApplicationsListCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self,request):
+
+
+        applications = Application.objects.filter(replacing_subject__university__id = request.GET.get("q"))
+        applications = applications.filter(ntnu_subject__id = request.GET.get("v"))
+        data = AllApplicationsSerializer(applications,many=True).data
+
+        return Response(data, status=status.HTTP_200_OK)
+
 class ApplicationListCreateView(APIView):
     permission_classes = (IsAuthenticated,)
 
