@@ -19,3 +19,13 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = '__all__'
+
+class AllApplicationsSerializer(serializers.ModelSerializer):
+
+    university_id = serpy.IntField()
+    ntnu_subject_id = serpy.IntField()
+
+    class Meta:
+        depth = 2
+        model = Application
+        fields = '__all__'

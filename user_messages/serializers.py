@@ -9,3 +9,14 @@ class MessageSerializer(serializers.ModelSerializer):
         model = Message
         depth = 1
         fields = '__all__'
+
+
+class MessageCreateSerializer(serializers.ModelSerializer):
+    sender = serializers.ReadOnlyField()
+    receiver = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Message
+        fields = '__all__'
+
+
