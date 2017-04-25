@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^users/', include('users.urls')),
     url(r'^application/', include('application.urls')),
     url(r'^chat/', include('user_messages.urls')),
-    url(r'^university_reviews/', include('University_reviews.urls')),
+    url(r'^university_reviews/', include('university_reviews.urls')),
 ]

@@ -14,7 +14,7 @@ class UniversityReviewListCreateView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        university_reviews = UniversityReview.objects.filter(university__id=request.GET.get("uniId"))
+        university_reviews = UniversityReview.objects.filter(university__id=request.GET.get("uni"))
         data = UniversityReviewSerializer(university_reviews, many=True).data
         return Response(data, status=status.HTTP_200_OK)
 
