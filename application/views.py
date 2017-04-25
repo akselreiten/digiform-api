@@ -19,9 +19,16 @@ class AllApplicationsListCreateView(APIView):
 
     def get(self,request):
 
+        applications = Application.objects.filter()
 
-        applications = Application.objects.filter(replacing_subject__university__id = request.GET.get("q"))
-        applications = applications.filter(ntnu_subject__id = request.GET.get("v"))
+        if request.GET.get("uni") != "":
+            applications = applications.filter(replacing_subject__university__id = request.GET.get("uni"))
+        if request.GET.get("subject") != "":
+            applications = applications.filter(ntnu_subject__id = request.GET.get("subject"))
+        if request.GET.get("approval") != "":
+            applications = applications.filter(application_status = "Accepted")
+
+
         data = AllApplicationsSerializer(applications,many=True).data
 
         return Response(data, status=status.HTTP_200_OK)

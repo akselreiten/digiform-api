@@ -24,6 +24,7 @@ class AllApplicationsSerializer(serializers.ModelSerializer):
 
     university_id = serpy.IntField()
     ntnu_subject_id = serpy.IntField()
+    approval_id = str
 
     class Meta:
         depth = 2
