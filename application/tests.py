@@ -25,4 +25,4 @@ class ApplicationViewTests(TestCase):
                                    justification="Great class",
                                    application_status=STATUS_PROCESSING);
 
-        obje
+    
