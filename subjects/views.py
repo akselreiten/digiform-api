@@ -15,18 +15,6 @@ class SubjectListCreateView(generics.ListCreateAPIView):
     queryset = Subject.objects.filter() #find all objects
     serializer_class = SubjectSerializer
 
-    #-- example filters --
-    #queryset = Subject.objects.filter(title__contains="obj")
-    #queryset = queryset.filter(university__id=1)
-
-    '''
-    def get(self,request):
-        queryset = Subject.objects.filter(title__contains="obj")
-        queryset = queryset.filter(university__id=1)
-        serializer = SubjectSerializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    '''
 
     def post(self, request):
         serializer = SubjectCreateSerializer(data=request.data)

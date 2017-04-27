@@ -6,6 +6,6 @@ urlpatterns = [
 
     url(r'^$',
         MessageListView.as_view(),
-        name='subject-list-create'),
+        name='chat-list-create'),
 
 ]

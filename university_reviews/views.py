@@ -14,9 +14,12 @@ class UniversityReviewListCreateView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        university_reviews = UniversityReview.objects.filter(university__id=request.GET.get("uni"))
-        data = UniversityReviewSerializer(university_reviews, many=True).data
-        return Response(data, status=status.HTTP_200_OK)
+        if request.GET.get("uni") != "":
+            university_reviews = UniversityReview.objects.filter(university__id=request.GET.get("uni"))
+            data = UniversityReviewSerializer(university_reviews, many=True).data
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response([], status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = UniversityReviewCreateSerializer(data=request.data)

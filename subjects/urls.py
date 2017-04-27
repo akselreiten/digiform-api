@@ -10,7 +10,7 @@ urlpatterns = [
 
     url(r'^(?P<pk>[0-9]+)/$',
         SubjectCreateView.as_view(),
-        name='subject-create'
+        name='get-subject'
         ),
 
 ]
