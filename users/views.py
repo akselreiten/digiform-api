@@ -10,11 +10,10 @@ from django.contrib.auth import logout
 from .serializers import UserSerializer, UserCreateSerializer
 
 
-
 class UserListCreate(APIView):
-    """
-    Create user view
-    """
+
+    #create user view
+    #no need to be logged in to create a user
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
@@ -24,6 +23,7 @@ class UserListCreate(APIView):
         data = UserSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
 
+    #get self
     def get(self, request):
         user = request.user
         serializer = UserSerializer(user)
@@ -31,6 +31,7 @@ class UserListCreate(APIView):
 
 class UserHandling(APIView):
 
+    #has to be logged in to log out
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):

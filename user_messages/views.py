@@ -17,11 +17,15 @@ from django.db.models import Q
 class MessageListView(APIView):
     permission_classes = (IsAuthenticated,)
 
+    #get all messages to or from user
     def get(self, request):
-        inbox = Message.objects.filter(Q(receiver=request.user) | Q(sender=request.user)).order_by('-time_stamp')
+        inbox = Message.objects.filter(Q(receiver=request.user) | Q(sender=request.user)).order_by('-time_stamp') #sort messages by time stamp
         serializer = MessageSerializer(inbox, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+    #create message to and from user.
+    #a little bit unconventional, but works!
     def post(self, request):
         serializer = MessageCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

@@ -12,10 +12,12 @@ from rest_framework import status
 class CreateUniversityReviewTest(ExtendedAPITestCase):
 
     def setUp(self):
+        #need a user and a university
         self.user = create_user()
         self.university = create_university()
 
     def test_create_university_review(self):
+        #attributes
         data = {
             "user":self.user.id,
             "lectures_rating":"5",
@@ -47,6 +49,7 @@ class CreateUniversityReviewTest(ExtendedAPITestCase):
         }
 
         self.url = reverse("university-review-list-create")
+        #not authorizing
         response = self.post(self.url,data)
         self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED,msg=response.data)
 
@@ -57,11 +60,12 @@ class GetUniversityReviewTest(ExtendedAPITestCase):
 
     def test_get_university_review(self):
         self.authorize_as_user(self.user)
-        self.url = "/university_reviews/?uni="
+        self.url = "/university_reviews/?uni=" #filtering in all reviews
         response = self.get(self.url)
         self.assertEqual(response.status_code,status.HTTP_200_OK,msg=response.data)
 
     def test_unauth_get_university_review(self):
+        #not authorizing
         self.url = "/university_reviews/?uni=/"
         response = self.get(self.url)
         self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED,msg=response.data)
@@ -71,7 +75,7 @@ class GetSpecificUniversityReviewTest(ExtendedAPITestCase):
     def setUp(self):
         self.user = create_user()
         self.university = University.objects.create(
-            title = "Very specific test university name",
+            title = "Test university",
             city = "Trondheim",
             country = "Norway",
             description = "Fantastic."
@@ -91,16 +95,13 @@ class GetSpecificUniversityReviewTest(ExtendedAPITestCase):
 
         self.url = reverse("university-review-list-create")
         self.authorize_as_user(self.user)
-        response = self.post(self.url,data)
+        response = self.post(self.url,data) #adding review in test database
 
     def test_get_specific_university_review(self):
 
         self.authorize_as_user(self.user)
-        self.url = "/university_reviews/?uni=1"
+        self.url = "/university_reviews/?uni=1" #filtering in the first (and only) entry in test database
         response = self.get(self.url)
-        self.assertEqual(response.data[0]["description"],"Great school. Good times.",msg=response.data)
 
-        """self.authorize_as_user(self.user)
-        self.url = "/university_reviews/?uni=/"
-        response = self.get(self.url)
-        self.assertEqual(response.data["results"][0]["courseCode"],"ABC321",msg=response.data)"""
+        #check if correct description
+        self.assertEqual(response.data[0]["description"],"Great school. Good times.",msg=response.data)

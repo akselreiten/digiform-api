@@ -140,5 +140,5 @@ class GetSpecificApplicationTest(ExtendedAPITestCase):
         self.url = "/application/getApplications/?uni=" + str(self.uni_id) + "&subject=&approval="
         response = self.get(self.url)
 
-        #asserting that justification is equal
+        #asserting that justification is not equal
         self.assertNotEqual(response.data[0]["justification"],"Wrong justification",msg=response.data)

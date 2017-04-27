@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from .models import UniversityReview
 
-
+#get reviews
 class UniversityReviewSerializer(serializers.ModelSerializer):
     class Meta:
         depth = 2
@@ -12,6 +12,7 @@ class UniversityReviewSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+#create reviews
 class UniversityReviewCreateSerializer(serializers.ModelSerializer):
 
     user = serializers.ReadOnlyField()

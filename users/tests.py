@@ -13,9 +13,8 @@ from rest_framework import status
 class CreateUserTest(ExtendedAPITestCase):
 
     def setUp(self):
+        #create user
         self.user = create_user()
-        self.receiver = create_other_user()
-        self.university = create_university()
 
     def test_create_user(self):
         data = {
@@ -26,12 +25,14 @@ class CreateUserTest(ExtendedAPITestCase):
             "last_name":"Sommerseth",
         }
 
-        self.url = "/users/createUser/"
-        self.authorize_as_user(self.user)
-        response = self.post(self.url,data)
-        self.assertEqual(response.status_code,status.HTTP_201_CREATED,msg=response.data)
+        self.url = "/users/createUser/" #url for creating user
+        self.authorize_as_user(self.user) #authorize
+        response = self.post(self.url,data) #create user
+        self.assertEqual(response.status_code,status.HTTP_201_CREATED,msg=response.data) #200 created
 
     def test_unauth_create_user(self):
+
+        #trying to create user without being logged in
 
         data = {
             "username":"martins",
@@ -44,6 +45,7 @@ class CreateUserTest(ExtendedAPITestCase):
         self.url = reverse("current-user")
         response = self.post(self.url,data)
         self.assertEqual(response.status_code,status.HTTP_201_CREATED,msg=response.data)
+        #201 ok!
         #user doesn't have to be logged in to create user
 
 class GetUserTest(ExtendedAPITestCase):
@@ -62,4 +64,6 @@ class GetUserTest(ExtendedAPITestCase):
         try:
             response = self.get(self.url)
         except AttributeError:
+            #get attribute error because it makes no sense
+            #trying to get your own user when not logged in
             pass

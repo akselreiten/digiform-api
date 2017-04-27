@@ -13,21 +13,28 @@ from rest_framework import status
 class CreateUserMessageTest(ExtendedAPITestCase):
 
     def setUp(self):
+        #create sender
         self.user = create_user()
+
+        #create receiver
         self.receiver = create_other_user()
+
+        #create receiver
         self.university = create_university()
 
     def test_create_user_message(self):
+
+        #defining message attributes
         data = {
             "sender":self.user.id,
             "receiver":self.receiver.id,
             "text":"morndu!",
         }
 
-        self.url = reverse("chat-list-create")
-        self.authorize_as_user(self.user)
-        response = self.post(self.url,data)
-        self.assertEqual(response.status_code,status.HTTP_201_CREATED,msg=response.data)
+        self.url = reverse("chat-list-create") #getting url
+        self.authorize_as_user(self.user) #authorize
+        response = self.post(self.url,data) #posting
+        self.assertEqual(response.status_code,status.HTTP_201_CREATED,msg=response.data) #201 ok
 
     def test_unauth_create_university_review(self):
         data = {
@@ -37,10 +44,13 @@ class CreateUserMessageTest(ExtendedAPITestCase):
         }
 
         self.url = reverse("chat-list-create")
+        #not authorizing
         response = self.post(self.url,data)
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED,msg=response.data)
+        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED,msg=response.data) #not ok!
 
-class GetUniversityReviewTest(ExtendedAPITestCase):
+class GetUserMessageTest(ExtendedAPITestCase):
+
+    #getting messages
 
     def setUp(self):
         self.user = create_user()
@@ -53,5 +63,6 @@ class GetUniversityReviewTest(ExtendedAPITestCase):
 
     def test_unauth_get_user_message(self):
         self.url = reverse("chat-list-create")
+        #not authorized
         response = self.get(self.url)
-        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED,msg=response.data)
+        self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED,msg=response.data) #not ok!

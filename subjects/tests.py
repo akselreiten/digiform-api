@@ -8,8 +8,10 @@ from rest_framework import status
 
 class CreateSubjectTest(ExtendedAPITestCase):
     def setUp(self):
+        #need user and university
         self.user = create_user()
         self.university = create_university()
+
 
     def test_create_subject(self):
         data = {
@@ -20,8 +22,8 @@ class CreateSubjectTest(ExtendedAPITestCase):
             "description":"Great subject"
         }
 
-        self.url = reverse("subject-list-create")
-        self.authorize_as_user(self.user)
+        self.url = reverse("subject-list-create") #url
+        self.authorize_as_user(self.user) #auth
         response = self.post(self.url,data)
         self.assertEqual(response.status_code,status.HTTP_201_CREATED,msg=response.data)
 
@@ -35,6 +37,7 @@ class CreateSubjectTest(ExtendedAPITestCase):
         }
 
         self.url = reverse("subject-list-create")
+        #not auth
         response = self.post(self.url,data)
         self.assertEqual(response.status_code,status.HTTP_401_UNAUTHORIZED, msg=response.data)
 
@@ -47,9 +50,9 @@ class GetSubjectTest(ExtendedAPITestCase):
     def test_get_subject(self):
 
         self.authorize_as_user(self.user)
-        self.url = "/subjects/1/"
+        self.url = "/subjects/1/" #subject with id 1, first and only subject in test database
         response = self.get(self.url)
-        self.assertEqual(response.status_code,status.HTTP_200_OK,msg=response.data)
+        self.assertEqual(response.status_code,status.HTTP_200_OK,msg=response.data) #200 ok
 
     def test_unauth_get_subject(self):
         self.url = "/subjects/1/"
@@ -77,7 +80,7 @@ class GetSpecificSubjectTest(ExtendedAPITestCase):
     def test_get_specific_subject(self):
 
         self.authorize_as_user(self.user)
-        self.url = "/subjects/?title=A very specific name for a test subject"
+        self.url = "/subjects/?title=A very specific name for a test subject" #filter on name
         response = self.get(self.url)
-        self.assertEqual(response.data["results"][0]["courseCode"],"ABC321",msg=response.data)
+        self.assertEqual(response.data["results"][0]["courseCode"],"ABC321",msg=response.data) #check if coursecode is correct
 
